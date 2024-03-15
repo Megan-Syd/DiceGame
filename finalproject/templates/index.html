@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: lightskyblue;
+            color: white;
+            font-family: monospace;
+        }
+
+        form {
+            color: black;
+        }
+    </style>
+    <title>Welcome to DiceGame</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="d-grid gap-2 col-md-6 offset-md-3">
+            <h1 class="mt-5 text-center">Welcome to DiceGame</h1>
+            <h3 class="m-3 text-center">Here's how to play:</h3>
+            <ul class="p-2">
+                <li class="p-2">Players take turns rolling the die</li>
+                <li class="p-2">A player may roll the die as many times as they like before passing to their
+                    opponent
+                </li>
+                <li class="p-2">Each number you roll is added to your score</li>
+                <li class="p-2">If you roll a 1, your score goes back to 0!</li>
+                <li class="p-2">The first player to score 20 points is the winner</li>
+            </ul>
+        </div>
+        <div class="d-grid gap-2 col-md-6 offset-md-3 text-center">
+            <hr>
+            <h4>Enter two player names to begin</h4>
+            <form action="/start" method="POST">
+                <div class="form-floating">
+                    <input class="form-control" type="text" id="player1" name="player1" placeholder="Player 1" required>
+                    <label for="player1">Player 1 </label>
+                </div>
+                <br>
+                <div class="form-floating">
+                    <input class="form-control" type="text" id="player2" name="player2" placeholder="Player 2" required>
+                    <label for="player2">Player 2 </label>
+                </div>
+                <br>
+                <button class="btn btn-success btn-lg" type="submit">Let's Play!</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: lightskyblue;
+            color: white;
+            font-family: monospace;
+        }
+    </style>
+    <title>Play DiceGame</title>
+</head>
+
+<body>
+    <div class="container text-center">
+        <div class="header">
+            <div class="row justify-content-end mt-3">
+                <form action="{{ url_for('quit') }}" method="GET"
+                    onsubmit="return confirm('Are you sure you want to quit the game?');">
+                    <button class="btn btn-danger" type="submit">Quit the Game</button>
+                </form>
+            </div>
+            <h1 class="m-5">Let's Play!</h1>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="lead">Player 1: {{ player1['name'] }}</p>
+                <p>Score: {{ player1['score'] }}</p>
+            </div>
+            <div class="col">
+                <p class="lead">Player 2: {{ player2['name'] }}</p>
+                <p>Score: {{ player2['score'] }}</p>
+            </div>
+        </div>
+        <div class="col">
+            <h3>Current Player: {{ current_player_name }}</h3>
+            <img class="m-3" src="{{ url_for('static', filename=('images/Die' ~ dice_value ~ '.bmp'))}}"
+                alt="Die {{ dice_value }}">
+            <p class="lead">{{ dice_value }}</p>
+        </div>
+        <div class="row justify-content-center m-3">
+            <div class="col-md-2">
+                <form action="/roll" method="POST">
+                    <button class="btn btn-success btn-lg" type="submit">Roll</button>
+                </form>
+            </div>
+            <div class="col-md-2">
+                <form action="/pass" method="POST">
+                    <button class="btn btn-warning btn-lg" type="submit">Pass</button>
+                </form>
+            </div>
+        </div>
+        {% if win_message %}
+        <h3>{{ win_message }}</h3>
+        <form action="/start" method="POST">
+            <input type="hidden" name="player1" value="{{ session['player1']['name'] }}">
+            <input type="hidden" name="player2" value="{{ session['player2']['name'] }}">
+            <button class="btn btn-lg btn-primary" type="submit">Play Again?</button>
+        </form>
+        {% endif %}
+    </div>
+</body>
+
+</html>
